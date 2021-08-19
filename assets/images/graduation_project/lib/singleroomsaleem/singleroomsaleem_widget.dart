@@ -1,0 +1,441 @@
+import '../calculatepricesingleyaldiz14/calculatepricesingleyaldiz14_widget.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../saleem_afandi_hotelroom/saleem_afandi_hotelroom_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+class SingleroomsaleemWidget extends StatefulWidget {
+  SingleroomsaleemWidget({Key key}) : super(key: key);
+
+  @override
+  _SingleroomsaleemWidgetState createState() => _SingleroomsaleemWidgetState();
+}
+
+class _SingleroomsaleemWidgetState extends State<SingleroomsaleemWidget> {
+  final pageViewController = PageController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF35A594),
+        automaticallyImplyLeading: true,
+        leading: InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SaleemAfandiHotelroomWidget(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Color(0xFFB9802A),
+            size: 35,
+          ),
+        ),
+        title: Image.asset(
+          'assets/images/logo.png',
+          width: 150,
+          height: 100,
+          fit: BoxFit.cover,
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Calculatepricesingleyaldiz14Widget(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.attach_money,
+                color: Color(0xFFB67512),
+                size: 35,
+              ),
+            ),
+          )
+        ],
+        centerTitle: true,
+        elevation: 4,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 210,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            height: 500,
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                  child: PageView(
+                                    controller: pageViewController,
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/78258111.jpg',
+                                        width: 60,
+                                        height: 600,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      Image.asset(
+                                        'assets/images/78258423.jpg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Image.asset(
+                                        'assets/images/78258444.jpg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Image.asset(
+                                        'assets/images/78542560.jpg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Image.asset(
+                                        'assets/images/78542585.jpg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment(0, 1),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                    child: SmoothPageIndicator(
+                                      controller: pageViewController,
+                                      count: 5,
+                                      axisDirection: Axis.horizontal,
+                                      onDotClicked: (i) {
+                                        pageViewController.animateToPage(
+                                          i,
+                                          duration: Duration(milliseconds: 500),
+                                          curve: Curves.ease,
+                                        );
+                                      },
+                                      effect: ExpandingDotsEffect(
+                                        expansionFactor: 2,
+                                        spacing: 8,
+                                        radius: 16,
+                                        dotWidth: 16,
+                                        dotHeight: 16,
+                                        dotColor: Color(0xFF9E9E9E),
+                                        activeDotColor: Color(0xFF35A594),
+                                        paintStyle: PaintingStyle.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Single room ',
+                    style: FlutterFlowTheme.title2.override(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFF835511),
+                    ),
+                  ),
+                  Icon(
+                    Icons.person,
+                    color: Color(0xFF35A594),
+                    size: 25,
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.single_bed,
+                    color: Color(0xFF35A594),
+                    size: 28,
+                  ),
+                  Text(
+                    'one bed or one twin bed',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.home_work_sharp,
+                    color: Color(0xFF35A594),
+                    size: 20,
+                  ),
+                  Text(
+                    '55 m2 ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.wifi,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    '    Free WIFI ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.cloud,
+                    color: Color(0xFF35A594),
+                    size: 25,
+                  ),
+                  Text(
+                    '   Mountain view   ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.ac_unit,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    '  Air conditioning ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.tv,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    '    Flat-screen TV',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.local_parking_sharp,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'Free parking ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.wine_bar,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'Minibar',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.bathtub,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    '  Ensuite bathroom ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.grass,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'Garden view ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.location_city,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'City View ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.house_siding_sharp,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'Landmark room',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.format_textdirection_r_to_l_rounded,
+                    color: Color(0xFF35A594),
+                    size: 24,
+                  ),
+                  Text(
+                    'Coffee machine ',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Container(
+                  width: double.infinity,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFEEEEEE),
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: Color(0xFFF5F5F5),
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(15, 15, 15, 25),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 8, 0, 20),
+                                child: Text(
+                                  'Room size : 55 m2                                   \\nthis sigle room has seating area , air conditioning and electric kettle .\\nin Your private path room :\\n Free toiletries               Towels \\nBidet                                Slippers \\nTiolet                               Hairdryer \\nBath or shower          Toilet paper \\nView :\\nMountain view \\nRoom facilities :\\nUpper floores accessible by elevator      \\nLinen                Kitchen\\nwardrobe or closet     Tumble dryer  \\nchild safety socket covers    TV\\n      ',
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
