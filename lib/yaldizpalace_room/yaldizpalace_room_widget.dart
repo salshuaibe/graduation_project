@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../deluxdoubleroomyaldiz/deluxdoubleroomyaldiz_widget.dart';
 import '../deluxe_doubleor_twin_room/deluxe_doubleor_twin_room_widget.dart';
 import '../deluxe_king_suitewithbalcony/deluxe_king_suitewithbalcony_widget.dart';
@@ -15,7 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class YaldizpalaceRoomWidget extends StatefulWidget {
-  YaldizpalaceRoomWidget({Key key}) : super(key: key);
+  final User user;
+  YaldizpalaceRoomWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _YaldizpalaceRoomWidgetState createState() => _YaldizpalaceRoomWidgetState();
@@ -36,7 +39,7 @@ class _YaldizpalaceRoomWidgetState extends State<YaldizpalaceRoomWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NablusmainhotelsWidget(),
+                builder: (context) => NablusmainhotelsWidget(user: widget.user),
               ),
             );
           },
@@ -117,7 +120,7 @@ class _YaldizpalaceRoomWidgetState extends State<YaldizpalaceRoomWidget> {
                 await Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => YaldizroomsingleWidget(),
+                    builder: (context) => YaldizroomsingleWidget(user: widget.user,),
                   ),
                   (r) => false,
                 );

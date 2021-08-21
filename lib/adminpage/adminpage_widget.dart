@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../delete_hotel/delete_hotel_widget.dart';
 import '../delete_resturant/delete_resturant_widget.dart';
 import '../delete_user/delete_user_widget.dart';
@@ -10,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AdminpageWidget extends StatefulWidget {
-  AdminpageWidget({Key key}) : super(key: key);
+  final User user;
+  AdminpageWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _AdminpageWidgetState createState() => _AdminpageWidgetState();
@@ -31,7 +34,7 @@ class _AdminpageWidgetState extends State<AdminpageWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => LoogintestWidget(),
+                builder: (context) => LoogintestWidget(user: widget.user),
               ),
             );
           },
@@ -141,7 +144,7 @@ class _AdminpageWidgetState extends State<AdminpageWidget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DeleteUserWidget(),
+                        builder: (context) => DeleteUserWidget(user:widget.user),
                       ),
                     );
                   },
@@ -166,7 +169,7 @@ class _AdminpageWidgetState extends State<AdminpageWidget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DeleteHotelWidget(),
+                        builder: (context) => DeleteHotelWidget(user:widget.user),
                       ),
                     );
                   },
@@ -191,7 +194,7 @@ class _AdminpageWidgetState extends State<AdminpageWidget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DeleteResturantWidget(),
+                        builder: (context) => DeleteResturantWidget(user:widget.user),
                       ),
                     );
                   },
@@ -216,7 +219,7 @@ class _AdminpageWidgetState extends State<AdminpageWidget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DeleteUserCopyWidget(),
+                        builder: (context) => DeleteUserCopyWidget(user:widget.user),
                       ),
                     );
                   },

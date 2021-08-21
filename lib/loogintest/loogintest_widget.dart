@@ -17,7 +17,8 @@ import '../backend/user.dart';
 
 class LoogintestWidget extends StatefulWidget {
   String eee;
-  LoogintestWidget({Key key}) : super(key: key);
+  final User user;
+  LoogintestWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _LoogintestWidgetState createState() => _LoogintestWidgetState();
@@ -251,9 +252,6 @@ class _LoogintestWidgetState extends State<LoogintestWidget> {
                                         user.email = textController1.text.toString();
                                         user.password = textController2.text.toString();
 
-
-                                         String eee;
-
                                          user.loginToBackend().then((correctSign) =>{
                                            if (correctSign == true){
                                              print(user.userType),
@@ -262,34 +260,25 @@ class _LoogintestWidgetState extends State<LoogintestWidget> {
                                                Navigator.push(context,
                                                  MaterialPageRoute(
                                                    builder: (context) =>
-                                                       AdminpageWidget(),),),}
+                                                       AdminpageWidget(user: this.user),),),}
                                            else if(user.userType=='normal'){
-                                           eee=user.email,
-                                               print("user:" +user.toString()),
+
+                                               print("userEmail:" +user.email),
                                                 Navigator.push(context,MaterialPageRoute(builder: (context) =>
-                                                 HomepageEnglishWidget(user:this.user)),),
-
-
-
-
+                                                 HomepageEnglishWidget(user: this.user)),),
 
                                            }
                                              else if(user.userType=='alflyla manger'){
-                                                 eee=user.email,
                                                  print("user:" +user.toString()),
                                                  Navigator.push(context,MaterialPageRoute(builder: (context) =>
                                                      AlflelawlelaadminWidget()),),
 
-
-
-
-
                                                }
                                                else if(user.userType=='yaldiz manger'){
-                                                   eee=user.email,
+
                                                    print("user:" +user.toString()),
                                                    Navigator.push(context,MaterialPageRoute(builder: (context) =>
-                                                       YaldizadminWidget()),),
+                                                       YaldizadminWidget(user: widget.user)),),
 
 
 

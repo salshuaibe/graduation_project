@@ -44,7 +44,7 @@ class _AccounsettingWidgetState extends State<AccounsettingWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomepageEnglishWidget(),
+                    builder: (context) => HomepageEnglishWidget(user: widget.user),
                   ),
                 );
               },
@@ -110,7 +110,7 @@ class _AccounsettingWidgetState extends State<AccounsettingWidget> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                             child: Text(
-                              widget.user.email,
+                              '${widget.user.email}',
                               style: FlutterFlowTheme.title1.override(
                                 fontFamily: 'Poppins',
                                 color: Colors.white,
@@ -171,7 +171,7 @@ class _AccounsettingWidgetState extends State<AccounsettingWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: SeeyourtripWidget(),
+                                child: SeeyourtripWidget(user: widget.user),
                               ),
                             );
                           },
@@ -220,11 +220,12 @@ class _AccounsettingWidgetState extends State<AccounsettingWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
+                              print('${widget.user.password}');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      Resetpassword2CopyWidget(),
+                                      Resetpassword2CopyWidget(user: widget.user),
                                 ),
                               );
                             },
@@ -251,7 +252,7 @@ class _AccounsettingWidgetState extends State<AccounsettingWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  Resetpassword2CopyWidget(),
+                                                  Resetpassword2CopyWidget(user: widget.user),
                                             ),
                                           );
                                         },

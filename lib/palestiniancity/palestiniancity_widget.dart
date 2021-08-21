@@ -33,7 +33,7 @@ class _PalestiniancityWidgetState extends State<PalestiniancityWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomepageEnglishWidget(),
+                builder: (context) => HomepageEnglishWidget(user: widget.user,),
               ),
             );
           },

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
+
 import '../deluxdoubleroomyaldiz/deluxdoubleroomyaldiz_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -327,8 +331,19 @@ class _Calculatepricesingleyaldiz1WidgetState
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    Response response = await post(Uri.parse("https://samehandraghad.herokuapp.com/room/price"),
+                                        headers: <String, String>{
+                                          'Content-Type': 'application/json; charset=UTF-8',
+                                        },
+                                        body: jsonEncode({'room_id': 45}));
+
+                                    var jsonResponse = jsonDecode(response.body);
+                                    print(jsonResponse['message'][0]['price']);
+                                    var price = jsonResponse['message'][0]['price'];
+                                    int roomsNumber = int.parse(textController1.text);
+                                    int days = this.datePicked2.day - this.datePicked1.day;
+                                    textController4.text = (price*roomsNumber*days).toStringAsPrecision(4);
                                   },
                                   text: 'Calculate Price   ',
                                   options: FFButtonOptions(

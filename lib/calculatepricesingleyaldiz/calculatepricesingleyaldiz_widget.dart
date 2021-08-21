@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:graduation_project/backend/user.dart';
+import 'package:http/http.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -8,7 +13,8 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CalculatepricesingleyaldizWidget extends StatefulWidget {
-  CalculatepricesingleyaldizWidget({Key key}) : super(key: key);
+  final User user;
+  CalculatepricesingleyaldizWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _CalculatepricesingleyaldizWidgetState createState() =>
@@ -46,7 +52,7 @@ class _CalculatepricesingleyaldizWidgetState
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => YaldizpalaceRoomWidget(),
+                builder: (context) => YaldizpalaceRoomWidget(user: widget.user),
               ),
             );
           },
@@ -331,8 +337,21 @@ class _CalculatepricesingleyaldizWidgetState
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    
+                                    Response response = await post(Uri.parse("https://samehandraghad.herokuapp.com/room/price"),
+                                        headers: <String, String>{
+                                          'Content-Type': 'application/json; charset=UTF-8',
+                                        },
+                                        body: jsonEncode({'room_id': 35}));
+                                    
+                                    var jsonResponse = jsonDecode(response.body);
+                                    print(jsonResponse['message'][0]['price']);
+                                    var price = jsonResponse['message'][0]['price'];
+                                    int roomsNumber = int.parse(textController1.text);
+                                    int days = this.datePicked2.day - this.datePicked1.day;
+                                    textController4.text = (price*roomsNumber*days).toStringAsPrecision(4);
+
                                   },
                                   text: 'Calculate Price   ',
                                   options: FFButtonOptions(

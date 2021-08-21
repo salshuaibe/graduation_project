@@ -1,3 +1,6 @@
+import 'package:graduation_project/backend/Hotel.dart';
+import 'package:graduation_project/backend/user.dart';
+
 import '../adminpage/adminpage_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -6,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteHotelWidget extends StatefulWidget {
-  DeleteHotelWidget({Key key}) : super(key: key);
+  final User user;
+  DeleteHotelWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _DeleteHotelWidgetState createState() => _DeleteHotelWidgetState();
@@ -186,179 +190,342 @@ class _DeleteHotelWidgetState extends State<DeleteHotelWidget> {
               padding: EdgeInsets.zero,
               scrollDirection: Axis.vertical,
               children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        border: Border.all(
+                          color: Color(0xFFC8CED5),
+                          width: 1,
+                        ),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                          border: Border.all(
+                            color: Color(0xFFC8CED5),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
+                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/78542132.jpg',
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Saleem  Afandi Hotel',
+                                        style: FlutterFlowTheme.subtitle1
+                                            .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF15212B),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: Alignment(0, 0),
+                                    child: Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(0, 0, 2, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          Hotel hotel = Hotel();
+                                          hotel.deleteHotel('45').then((deleted) => {
+                                            if(deleted){
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    // Retrieve the text the user has entered by using the
+                                                    // TextEditingController.
+                                                    content: Text("Hotel deleted :)"),
+                                                    actions: <Widget>[
+                                                      // usually buttons at the bottom of the dialog
+                                                      new TextButton(
+                                                        child: new Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            }else {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    // Retrieve the text the user has entered by using the
+                                                    // TextEditingController.
+                                                    content: Text("There is something wrong !!"),
+                                                    actions: <Widget>[
+                                                      // usually buttons at the bottom of the dialog
+                                                      new TextButton(
+                                                        child: new Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            }
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Color(0xFF865A12),
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             )
                           ],
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        border: Border.all(
+                          color: Color(0xFFC8CED5),
+                          width: 1,
+                        ),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                          border: Border.all(
+                            color: Color(0xFFC8CED5),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/37752810.jpg',
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'AlYasmeen hotels',
+                                        style: FlutterFlowTheme.subtitle1
+                                            .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF15212B),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: Alignment(0, 0),
+                                    child: Padding(
+                                      padding:
+                                      EdgeInsets.fromLTRB(0, 0, 2, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          Hotel hotel = Hotel();
+                                          hotel.deleteHotel('55').then((deleted) => {
+                                            if(deleted){
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    // Retrieve the text the user has entered by using the
+                                                    // TextEditingController.
+                                                    content: Text("Hotel deleted :)"),
+                                                    actions: <Widget>[
+                                                      // usually buttons at the bottom of the dialog
+                                                      new TextButton(
+                                                        child: new Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            }else {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    // Retrieve the text the user has entered by using the
+                                                    // TextEditingController.
+                                                    content: Text("There is something wrong !!"),
+                                                    actions: <Widget>[
+                                                      // usually buttons at the bottom of the dialog
+                                                      new TextButton(
+                                                        child: new Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            }
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Color(0xFF865A12),
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        border: Border.all(
+                          color: Color(0xFFC8CED5),
+                          width: 1,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
+                                Container(
+                                  width: 60,
+                                  height: 60,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/219356824.jpg',
+                                  ),
                                 )
                               ],
                             ),
                           ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue1 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              textPadding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
+                          Expanded(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      '1.7mi',
+                                      'Yaldiz palace hotels',
                                       style:
-                                          FlutterFlowTheme.bodyText1.override(
+                                      FlutterFlowTheme.subtitle1.override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF15212B),
                                       ),
                                     )
                                   ],
@@ -366,464 +533,75 @@ class _DeleteHotelWidgetState extends State<DeleteHotelWidget> {
                               ],
                             ),
                           ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue2 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      '1.7mi',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 2, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      Hotel hotel = Hotel();
+                                      hotel.deleteHotel('65').then((deleted) => {
+                                        if(deleted){
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                // Retrieve the text the user has entered by using the
+                                                // TextEditingController.
+                                                content: Text("Hotel deleted :)"),
+                                                actions: <Widget>[
+                                                  // usually buttons at the bottom of the dialog
+                                                  new TextButton(
+                                                    child: new Text("Close"),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        }else {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                // Retrieve the text the user has entered by using the
+                                                // TextEditingController.
+                                                content: Text("There is something wrong !!"),
+                                                actions: <Widget>[
+                                                  // usually buttons at the bottom of the dialog
+                                                  new TextButton(
+                                                    child: new Text("Close"),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        }
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF865A12),
+                                      size: 24,
+                                    ),
+                                  ),
                                 )
                               ],
                             ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue3 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      '1.7mi',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue4 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      '1.7mi',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue5 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  'assets/images/imageList@2x.png',
-                                  width: 74,
-                                  height: 74,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(8, 1, 0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Hotel/Location Name',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '123 Address St, City, ST',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      '1.7mi',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: [''],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue6 = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.vertical,
-                              radioButtonColor: Colors.blue,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 )
               ],
             ),

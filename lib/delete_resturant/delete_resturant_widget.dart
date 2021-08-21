@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../adminpage/adminpage_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -6,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteResturantWidget extends StatefulWidget {
-  DeleteResturantWidget({Key key}) : super(key: key);
+  final User user;
+  DeleteResturantWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _DeleteResturantWidgetState createState() => _DeleteResturantWidgetState();

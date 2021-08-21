@@ -54,52 +54,50 @@ class Hotel {
       }
       return _hotels;
     }
-
     return _hotels;
   }
 
-  Future <bool> getallhotel() async {
-    print("before search");
+  Future <List<Hotel>> getAllHotel() async {
+    List<Hotel>_hotels= <Hotel>[];
+
     Response response = await post(
         Uri.parse("https://samehandraghad.herokuapp.com/hotel/getAll"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({
+        body: jsonEncode({        }));
 
-
-        }));
-    print("after search");
     var jsonResponse = jsonDecode(response.body);
     print(jsonResponse);
     if (jsonResponse['error'] != null) {
-
-      return false;
+      return _hotels;
     }
     else if (jsonResponse['message'] != null) {
-      //Iterable list = result[0]['table_menu_list'][0]['category_dishes'];
-      //return list.map((model) => CategoryDishes.fromJson(model)).toList();
-      this.id = (jsonResponse['message']['id']);
-      this.hotal_name = jsonResponse['message']['hotel_name'];
-      this.city = jsonResponse['message']['city'];
-      this.num_of_rooms = jsonResponse['message']['num_of_rooms'];
-
-
-      return true;
+      _hotels.clear();
+      var length = jsonResponse['length'];
+      var queue = jsonResponse['message'];
+      for (int i=0 ; i< length ; i++){
+        _hotels.add(
+            Hotel(
+                id: queue[i]['id'].toString(),
+                hotal_name: '${queue[i]['hotal_name']}',
+                city: queue[i]['city'],
+                num_of_rooms: queue[i]['num_of_rooms'].toString()
+            )
+        );
+      }
+      return _hotels;
     }
-    return false;
+
+    return _hotels;
   }
 
-}
- /* Future <bool> signupToBackend() async {
-    if( password != confirmPassword) return false ;
-    Response response = await post(Uri.parse("https://samehandraghad.herokuapp.com/signup"),
-        // Response response = await post("http://10.0.2.2:5000/"https://dont-wait.herokuapp.com/signup"signup",
+  Future <bool> deleteHotel(String id) async {
+    Response response = await post(Uri.parse("https://samehandraghad.herokuapp.com/hotel/delete"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({'birth_date': this.birthDate ,'gender': gender, 'email': email, 'password': password, 'user_type':this.userType}));
-    print("after post");
+        body: jsonEncode({'hotel_id': id}));
 
     var jsonResponse = jsonDecode(response.body);
     print(jsonResponse);
@@ -108,11 +106,9 @@ class Hotel {
       return false;
     }
     else if (jsonResponse['message'] != null){
-      // print (jsonResponse['message']);
       return true;
     }
     return false;
   }
 
-
-}*/
+}

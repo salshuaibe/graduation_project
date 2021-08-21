@@ -1,3 +1,6 @@
+import 'package:graduation_project/backend/api_requests/offer.dart';
+import 'package:graduation_project/backend/user.dart';
+
 import '../adminpage/adminpage_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -6,25 +9,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteUserWidget extends StatefulWidget {
-  DeleteUserWidget({Key key}) : super(key: key);
+  final User user;
+  DeleteUserWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _DeleteUserWidgetState createState() => _DeleteUserWidgetState();
 }
 
+
+
 class _DeleteUserWidgetState extends State<DeleteUserWidget> {
-  String radioButtonValue1;
-  String radioButtonValue2;
-  String radioButtonValue3;
-  String radioButtonValue4;
-  String radioButtonValue5;
+
+
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<User> userItemsListUI = <User>[];
+  Future<bool> updateListView;
 
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
+    updateListView = getData();
+    getData();
   }
 
   @override
@@ -39,7 +47,7 @@ class _DeleteUserWidgetState extends State<DeleteUserWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AdminpageWidget(),
+                builder: (context) => AdminpageWidget(user: widget.user),
               ),
             );
           },
@@ -195,599 +203,177 @@ class _DeleteUserWidgetState extends State<DeleteUserWidget> {
               ),
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(16, 12, 0, 12),
-                        child: Text(
-                          'Recent User',
-                          style: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          border: Border.all(
-                            color: Color(0xFFC8CED5),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/user_4@2x.png',
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Alex Edwards',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 4, 0),
-                                          child: Text(
-                                            '[userEmail]',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB67512),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FlutterFlowRadioButton(
-                                    options: [''],
-                                    onChanged: (value) {
-                                      setState(() => radioButtonValue1 = value);
-                                    },
-                                    optionHeight: 25,
-                                    textStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                    buttonPosition: RadioButtonPosition.left,
-                                    direction: Axis.vertical,
-                                    radioButtonColor: Color(0xFF35A594),
-                                    toggleable: false,
-                                    horizontalAlignment: WrapAlignment.start,
-                                    verticalAlignment: WrapCrossAlignment.start,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          border: Border.all(
-                            color: Color(0xFFC8CED5),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/user_4@2x.png',
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Alex Edwards',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 4, 0),
-                                          child: Text(
-                                            '[userEmail]',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB67512),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FlutterFlowRadioButton(
-                                    options: [''],
-                                    onChanged: (value) {
-                                      setState(() => radioButtonValue2 = value);
-                                    },
-                                    optionHeight: 25,
-                                    textStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                    buttonPosition: RadioButtonPosition.left,
-                                    direction: Axis.vertical,
-                                    radioButtonColor: Color(0xFF35A594),
-                                    toggleable: false,
-                                    horizontalAlignment: WrapAlignment.start,
-                                    verticalAlignment: WrapCrossAlignment.start,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          border: Border.all(
-                            color: Color(0xFFC8CED5),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/user_4@2x.png',
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Alex Edwards',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 4, 0),
-                                          child: Text(
-                                            '[userEmail]',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB67512),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FlutterFlowRadioButton(
-                                    options: [''],
-                                    onChanged: (value) {
-                                      setState(() => radioButtonValue3 = value);
-                                    },
-                                    optionHeight: 25,
-                                    textStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                    buttonPosition: RadioButtonPosition.left,
-                                    direction: Axis.vertical,
-                                    radioButtonColor: Color(0xFF35A594),
-                                    toggleable: false,
-                                    horizontalAlignment: WrapAlignment.start,
-                                    verticalAlignment: WrapCrossAlignment.start,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(16, 12, 0, 12),
-                        child: Text(
-                          'All User',
-                          style: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          border: Border.all(
-                            color: Color(0xFFC8CED5),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/user_4@2x.png',
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Alex Edwards',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 4, 0),
-                                          child: Text(
-                                            '[userEmail]',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB67512),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FlutterFlowRadioButton(
-                                    options: [''],
-                                    onChanged: (value) {
-                                      setState(() => radioButtonValue4 = value);
-                                    },
-                                    optionHeight: 25,
-                                    textStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                    buttonPosition: RadioButtonPosition.left,
-                                    direction: Axis.vertical,
-                                    radioButtonColor: Color(0xFF35A594),
-                                    toggleable: false,
-                                    horizontalAlignment: WrapAlignment.start,
-                                    verticalAlignment: WrapCrossAlignment.start,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          border: Border.all(
-                            color: Color(0xFFC8CED5),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/user_4@2x.png',
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Alex Edwards',
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF15212B),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 4, 0),
-                                          child: Text(
-                                            '[userEmail]',
-                                            style: FlutterFlowTheme.bodyText2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB67512),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FlutterFlowRadioButton(
-                                    options: [''],
-                                    onChanged: (value) {
-                                      setState(() => radioButtonValue5 = value);
-                                    },
-                                    optionHeight: 25,
-                                    textStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                    buttonPosition: RadioButtonPosition.left,
-                                    direction: Axis.vertical,
-                                    radioButtonColor: Color(0xFF35A594),
-                                    toggleable: false,
-                                    horizontalAlignment: WrapAlignment.start,
-                                    verticalAlignment: WrapCrossAlignment.start,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          )
+          getOfferViews(),
         ],
       ),
     );
+  }
+
+  Widget getOfferViews(){
+    return FutureBuilder<bool>(
+      future: updateListView,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (!snapshot.hasData) {
+          return const SizedBox();
+        } else {
+          return Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: this.userItemsListUI.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  onTap: (){
+                    widget.user.deleteUser(this.userItemsListUI[index].email).then((deleted) => {
+                      if(deleted){
+                        getData()
+                      } else {
+                          showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              // Retrieve the text the user has entered by using the
+                              // TextEditingController.
+                              content: Text("You have to delete all hotels for this user first !!"),
+                              actions: <Widget>[
+                                // usually buttons at the bottom of the dialog
+                                new TextButton(
+                                  child: new Text("Close"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        )
+                      }
+                    });
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                          border: Border.all(
+                            color: Color(0xFFC8CED5),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        '${userItemsListUI[index].email}',
+                                        style:
+                                        FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF15212B),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                          EdgeInsets.fromLTRB(0, 4, 4, 0),
+                                          child: Text(
+                                            'Type: ${userItemsListUI[index].userType}   Gender: ${userItemsListUI[index].gender}',
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFFB67512),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  InkWell(
+                                    child: FlutterFlowRadioButton(
+                                      options: [''],
+                                      onChanged: (value) {},
+                                      optionHeight: 25,
+                                      textStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                      ),
+                                      buttonPosition: RadioButtonPosition.right,
+                                      direction: Axis.vertical,
+                                      radioButtonColor: Color(0xFF35A594),
+                                      toggleable: true,
+                                      horizontalAlignment: WrapAlignment.start,
+                                      verticalAlignment: WrapCrossAlignment.start,
+                                    ),
+                                    onTap: () {
+
+                                    },
+
+                                  )
+
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  Future<bool> getData() async {
+    User user = User();
+    this.userItemsListUI = await user.getAllUsers();
+    return true;
   }
 }

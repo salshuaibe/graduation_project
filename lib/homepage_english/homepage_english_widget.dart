@@ -57,8 +57,6 @@ class _HomepageEnglishWidgetState extends State<HomepageEnglishWidget> {
               onTap: () async {
 
                 await Navigator.push(
-
-
                   context,
                   MaterialPageRoute(
                     builder: (context) => PalestiniancityWidget(user:this.widget.user),
@@ -186,7 +184,7 @@ class _HomepageEnglishWidgetState extends State<HomepageEnglishWidget> {
                 await Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SeeyourtripWidget(),
+                    builder: (context) => SeeyourtripWidget(user: widget.user),
                   ),
                       (r) => false,
                 );
@@ -324,7 +322,7 @@ class _HomepageEnglishWidgetState extends State<HomepageEnglishWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OffersWidget(),
+                          builder: (context) => OffersWidget(user: widget.user),
                         ),
                       );
                     },

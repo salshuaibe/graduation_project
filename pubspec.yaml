@@ -41,6 +41,7 @@ dependencies:
   smooth_page_indicator:
   timeago:
   url_launcher:
+  mailer:
 
 
   # The following adds the Cupertino Icons font to your application.

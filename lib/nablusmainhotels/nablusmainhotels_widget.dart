@@ -37,7 +37,7 @@ class _NablusmainhotelsWidgetState extends State<NablusmainhotelsWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Nablus1Widget(),
+                builder: (context) => Nablus1Widget(user: widget.user,),
               ),
             );
           },
@@ -354,20 +354,14 @@ class _NablusmainhotelsWidgetState extends State<NablusmainhotelsWidget> {
                                     padding: EdgeInsets.fromLTRB(0, 0, 2, 0),
                                     child: InkWell(
                                       onTap: () async {
-                                      hotel.getallhotel().then((trueHotel) =>{
-
-                                    if (trueHotel == true){
-
-                                   if (hotel.id=='15'){
-                                    Navigator.push(
+                                        await Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 Yaldizpalace1Widget(user: this.widget.user),
                                           ),
-                                        )
-
-                                       }  }});},
+                                        );
+                                        },
                                       child: Icon(
                                         Icons.hotel,
                                         color: Color(0xFF865A12),

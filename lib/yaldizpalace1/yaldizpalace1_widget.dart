@@ -26,7 +26,7 @@ class Yaldizpalace1Widget extends StatefulWidget {
 class _Yaldizpalace1WidgetState extends State<Yaldizpalace1Widget> {
   final pageViewController = PageController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  Favourite fav= Favourite();
+
   Hotel hotel=Hotel();
 
 
@@ -43,7 +43,7 @@ class _Yaldizpalace1WidgetState extends State<Yaldizpalace1Widget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NablusmainhotelsWidget(),
+                builder: (context) => NablusmainhotelsWidget(user: widget.user,),
               ),
             );
           },
@@ -250,17 +250,21 @@ class _Yaldizpalace1WidgetState extends State<Yaldizpalace1Widget> {
               children: [
                 IconButton(
                   onPressed: () {
-                    fav.UserId=widget.user.id;
-                    fav.FavouriteId= '10';
-                    fav.Type='hotel';
+                    Favourite fav= Favourite(
+                      UserId: widget.user.id,
+                      FavouriteId: '65',
+                      Type: 'hotel'
+                    );
+                    print("userID:" + widget.user.id);
+
                     fav.addfav().then((fa) =>{
 
                     if (fa == true){
-                    print("hello"),
-
-
-
+                    print("added to favorite"),
                       }
+                    else {
+                      print("not added to favorite"),
+                    }
 
                      });},
 
@@ -373,7 +377,7 @@ class _Yaldizpalace1WidgetState extends State<Yaldizpalace1Widget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                YaldizpalaceRoomWidget(),
+                                                YaldizpalaceRoomWidget(user: widget.user),
                                           ),
                                         );
                                       },
@@ -476,7 +480,7 @@ class _Yaldizpalace1WidgetState extends State<Yaldizpalace1Widget> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ReadfeedbackalyaldizWidget(),
+                                              ReadfeedbackalyaldizWidget(user:widget.user,),
                                         ),
                                       );
                                     },

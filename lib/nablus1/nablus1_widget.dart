@@ -37,7 +37,7 @@ class _Nablus1WidgetState extends State<Nablus1Widget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PalestiniancityWidget(),
+                builder: (context) => PalestiniancityWidget(user: widget.user,),
               ),
             );
           },
@@ -61,7 +61,7 @@ class _Nablus1WidgetState extends State<Nablus1Widget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomepageEnglishWidget(),
+                    builder: (context) => HomepageEnglishWidget(user: widget.user),
                   ),
                 );
               },
@@ -307,7 +307,7 @@ class _Nablus1WidgetState extends State<Nablus1Widget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  NablusRestaurantsWidget(),
+                                                  NablusRestaurantsWidget(user: widget.user),
                                             ),
                                           );
                                         },

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
+
 import '../flutter_flow/flutter_flow_drop_down_template.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -150,10 +154,36 @@ class _CheckavailabilityyaldizWidgetState
                                       initialOption: '# of Rooms',
                                       options: [
                                         '# of Rooms',
+                                        '1',
                                         '2',
                                         '3',
                                         '4',
-                                        '5'
+                                        '5',
+                                        '6',
+                                        '7',
+                                        '8',
+                                        '9',
+                                        '10',
+                                        '11',
+                                        '12',
+                                        '13',
+                                        '14',
+                                        '15',
+                                        '16',
+                                        '17',
+                                        '18',
+                                        '19',
+                                        '20',
+                                        '21',
+                                        '22',
+                                        '23',
+                                        '24',
+                                        '25',
+                                        '26',
+                                        '27',
+                                        '28',
+                                        '29',
+                                        '30'
                                       ],
                                       onChanged: (value) {
                                         setState(() => dropDownValue1 = value);
@@ -190,10 +220,10 @@ class _CheckavailabilityyaldizWidgetState
                                               options: [
                                                 '# of Adult',
                                                 '1',
-                                                '2\\n',
+                                                '2',
                                                 '3',
                                                 '4',
-                                                '5\\n',
+                                                '5',
                                                 '6',
                                                 '7',
                                                 '8',
@@ -248,15 +278,35 @@ class _CheckavailabilityyaldizWidgetState
                                         options: [
                                           '# of Children',
                                           '1',
-                                          '2\\n',
+                                          '2',
                                           '3',
                                           '4',
-                                          '5\\n',
+                                          '5',
                                           '6',
-                                          '7\\n',
-                                          '8\\n',
-                                          '9\\n',
-                                          '10'
+                                          '7',
+                                          '8',
+                                          '9',
+                                          '10',
+                                          '11',
+                                          '12',
+                                          '13',
+                                          '14',
+                                          '15',
+                                          '16',
+                                          '17',
+                                          '18',
+                                          '19',
+                                          '20',
+                                          '21',
+                                          '22',
+                                          '23',
+                                          '24',
+                                          '25',
+                                          '26',
+                                          '27',
+                                          '28',
+                                          '29',
+                                          '30'
                                         ],
                                         onChanged: (value) {
                                           setState(
@@ -436,14 +486,14 @@ class _CheckavailabilityyaldizWidgetState
                                         options: [
                                           'Single Room ',
                                           'Deluxe Double Room',
-                                          'Deluxe Triple Room\\n',
+                                          'Deluxe Triple Room',
                                           'Deluxe Quadruple Room',
                                           'Superior King Suite',
-                                          'King uite with Balcony\\n',
+                                          'King Suite with Balcony',
                                           'Deluxe King Suite',
-                                          'Junior Suite\\n',
-                                          'Deluxe Double or Twin Room\\n',
-                                          'Deluxe Family Room\\n'
+                                          'Junior Suite',
+                                          'Deluxe Double or Twin Room',
+                                          'Deluxe Family Room'
                                         ],
                                         onChanged: (value) {
                                           setState(
@@ -470,8 +520,24 @@ class _CheckavailabilityyaldizWidgetState
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async{
+                                      Response response = await post(Uri.parse("https://samehandraghad.herokuapp.com/room/avalability"),
+                                          headers: <String, String>{
+                                            'Content-Type': 'application/json; charset=UTF-8',
+                                          },
+                                          body: jsonEncode({'type': dropDownValue4, 'num_of_room': dropDownValue1, 'num_of_adult': dropDownValue2, 'num_of_children': dropDownValue3}));
+
+                                      var jsonResponse = jsonDecode(response.body);
+                                      print(jsonResponse);
+                                      if(jsonResponse['message'] != null){
+                                        print('Room is available :)');
+                                        textController3.text = 'Room is available :)';
+                                      }
+                                      else {
+                                        textController3.text = 'Room is not available :(';
+                                      }
+
+
                                     },
                                     text: 'Check Availability ',
                                     options: FFButtonOptions(

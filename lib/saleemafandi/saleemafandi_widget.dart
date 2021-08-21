@@ -1,3 +1,4 @@
+import 'package:graduation_project/backend/favourite.dart';
 import 'package:graduation_project/backend/user.dart';
 
 import '../checkavailabilitysaleem/checkavailabilitysaleem_widget.dart';
@@ -35,7 +36,7 @@ class _SaleemafandiWidgetState extends State<SaleemafandiWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NablusmainhotelsWidget(),
+                builder: (context) => NablusmainhotelsWidget(user: widget.user),
               ),
             );
           },
@@ -255,7 +256,24 @@ class _SaleemafandiWidgetState extends State<SaleemafandiWidget> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              print('IconButton pressed ...');
+                              print(widget.user.id);
+                              Favourite fav= Favourite(
+                                  UserId: widget.user.id,
+                                  FavouriteId: '45',
+                                  Type: 'hotel'
+                              );
+                              print("userID:" + widget.user.id);
+
+                              fav.addfav().then((fa) =>{
+
+                                if (fa == true){
+                                  print("added to favorite"),
+                                }
+                                else {
+                                  print("not added to favorite"),
+                                }
+
+                              });
                             },
                             icon: Icon(
                               Icons.favorite,

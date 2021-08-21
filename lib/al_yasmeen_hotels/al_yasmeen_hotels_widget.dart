@@ -1,3 +1,4 @@
+import 'package:graduation_project/backend/favourite.dart';
 import 'package:graduation_project/backend/user.dart';
 
 import '../al_yasmeen_hotel_info/al_yasmeen_hotel_info_widget.dart';
@@ -36,7 +37,7 @@ class _AlYasmeenHotelsWidgetState extends State<AlYasmeenHotelsWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NablusmainhotelsWidget(),
+                builder: (context) => NablusmainhotelsWidget(user: widget.user),
               ),
             );
           },
@@ -244,7 +245,23 @@ class _AlYasmeenHotelsWidgetState extends State<AlYasmeenHotelsWidget> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        print('IconButton pressed ...');
+                        Favourite fav= Favourite(
+                            UserId: widget.user.id,
+                            FavouriteId: '55',
+                            Type: 'hotel'
+                        );
+                        print("userID:" + widget.user.id);
+
+                        fav.addfav().then((fa) =>{
+
+                          if (fa == true){
+                            print("added to favorite"),
+                          }
+                          else {
+                            print("not added to favorite"),
+                          }
+
+                        });
                       },
                       icon: Icon(
                         Icons.favorite,

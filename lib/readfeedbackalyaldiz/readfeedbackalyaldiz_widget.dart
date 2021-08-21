@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -5,9 +7,12 @@ import '../yaldizpalace1/yaldizpalace1_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class ReadfeedbackalyaldizWidget extends StatefulWidget {
-  ReadfeedbackalyaldizWidget({Key key}) : super(key: key);
+  final User user;
+  ReadfeedbackalyaldizWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _ReadfeedbackalyaldizWidgetState createState() =>
@@ -162,7 +167,52 @@ class _ReadfeedbackalyaldizWidgetState
                     ),
                     FFButtonWidget(
                       onPressed: () {
-                        print('Button pressed ...');
+                        FocusScope.of(context).requestFocus(FocusNode());
+
+                        var username = 'hhammamnajemm@gmail.com';
+                        var password = 'hammamnajem123321';
+                        final smtpServer = gmail(username, password);
+
+                        final message = Message()
+                          ..from = Address(username, (widget.user.email) )
+                          ..recipients.add('hhammamnajem98@gmail.com')
+                          ..subject = 'Feed Back ${DateTime.now()}'
+                          ..text = widget.user.email+'\n\n'+ this.textController1.text;
+                          print(textController1.text);
+                        try {
+                          final sendReport = send(message, smtpServer);
+
+                          print('Message sent: ' + sendReport.toString());
+                          this.textController1.text = '';
+
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                // Retrieve the text the user has entered by using the
+                                // TextEditingController.
+                                content: Text("Thank for your feedback !!"),
+                                actions: <Widget>[
+                                  // usually buttons at the bottom of the dialog
+                                  new TextButton(
+                                    child: new Text("Close"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                              },
+                            );
+                          print('email sent');
+
+                          } on MailerException catch (e) {
+                            print('Message not sent.');
+                            for (var p in e.problems) {
+                              print('Problem: ${p.code}: ${p.msg}');
+                            }
+                          }
+
                       },
                       text: 'send',
                       options: FFButtonOptions(

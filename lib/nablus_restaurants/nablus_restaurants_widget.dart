@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../alf_layla_wa_layla/alf_layla_wa_layla_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -10,7 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class NablusRestaurantsWidget extends StatefulWidget {
-  NablusRestaurantsWidget({Key key}) : super(key: key);
+  final User user;
+  NablusRestaurantsWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _NablusRestaurantsWidgetState createState() =>
@@ -33,7 +36,7 @@ class _NablusRestaurantsWidgetState extends State<NablusRestaurantsWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Nablus1Widget(),
+                builder: (context) => Nablus1Widget(user: widget.user,),
               ),
             );
           },
@@ -77,7 +80,7 @@ class _NablusRestaurantsWidgetState extends State<NablusRestaurantsWidget> {
                 await Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AlfLaylaWaLaylaWidget(),
+                    builder: (context) => AlfLaylaWaLaylaWidget(user: widget.user),
                   ),
                   (r) => false,
                 );

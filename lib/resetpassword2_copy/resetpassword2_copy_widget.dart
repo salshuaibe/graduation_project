@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Resetpassword2CopyWidget extends StatefulWidget {
-  Resetpassword2CopyWidget({Key key}) : super(key: key);
+  final User user;
+  Resetpassword2CopyWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _Resetpassword2CopyWidgetState createState() =>
@@ -37,7 +40,7 @@ class _Resetpassword2CopyWidgetState extends State<Resetpassword2CopyWidget> {
         backgroundColor: Color(0xFF34A294),
         automaticallyImplyLeading: false,
         title: Text(
-          'Click Travel ',
+          'Click Travel  ',
           style: FlutterFlowTheme.title3.override(
             fontFamily: 'Poppins',
             color: Color(0xFF835511),
@@ -262,13 +265,79 @@ class _Resetpassword2CopyWidgetState extends State<Resetpassword2CopyWidget> {
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            HomepageEnglishWidget(),
-                                      ),
-                                    );
+
+                                    String oldPAss = this.textController1.text;
+                                    String newPass = this.textController2.text;
+                                    String newPassConf = this.textController3.text;
+                                    if (newPass == newPassConf && oldPAss == widget.user.password){
+                                      widget.user.changePassword(newPass).then((changed) => {
+                                        if(changed){
+                                            showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                // Retrieve the text the user has entered by using the
+                                                // TextEditingController.
+                                                content: Text("Your password updated !"),
+                                                actions: <Widget>[
+                                                  // usually buttons at the bottom of the dialog
+                                                  new TextButton(
+                                                    child: new Text("Close"),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        }
+                                        else {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                // Retrieve the text the user has entered by using the
+                                                // TextEditingController.
+                                                content: Text("Something wrong happened !!"),
+                                                actions: <Widget>[
+                                                  // usually buttons at the bottom of the dialog
+                                                  new TextButton(
+                                                    child: new Text("Close"),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        }
+                                      });
+                                    }else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            // Retrieve the text the user has entered by using the
+                                            // TextEditingController.
+                                            content: Text("Something wrong happened !!"),
+                                            actions: <Widget>[
+                                              // usually buttons at the bottom of the dialog
+                                              new TextButton(
+                                                child: new Text("Close"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+                                    this.textController1.text= "";
+                                    this.textController2.text= "";
+                                    this.textController3.text= "";
                                   },
                                   text: 'update password',
                                   options: FFButtonOptions(

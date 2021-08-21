@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../adminpage/adminpage_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -6,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteUserCopyWidget extends StatefulWidget {
-  DeleteUserCopyWidget({Key key}) : super(key: key);
+  final User user;
+  DeleteUserCopyWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _DeleteUserCopyWidgetState createState() => _DeleteUserCopyWidgetState();

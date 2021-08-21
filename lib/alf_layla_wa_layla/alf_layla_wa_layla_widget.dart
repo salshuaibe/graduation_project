@@ -1,3 +1,6 @@
+import 'package:graduation_project/backend/favourite.dart';
+import 'package:graduation_project/backend/user.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../nablus_restaurants/nablus_restaurants_widget.dart';
@@ -7,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AlfLaylaWaLaylaWidget extends StatefulWidget {
-  AlfLaylaWaLaylaWidget({Key key}) : super(key: key);
+  final User user;
+  AlfLaylaWaLaylaWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _AlfLaylaWaLaylaWidgetState createState() => _AlfLaylaWaLaylaWidgetState();
@@ -29,7 +33,7 @@ class _AlfLaylaWaLaylaWidgetState extends State<AlfLaylaWaLaylaWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NablusRestaurantsWidget(),
+                builder: (context) => NablusRestaurantsWidget(user: widget.user,),
               ),
             );
           },
@@ -53,7 +57,7 @@ class _AlfLaylaWaLaylaWidgetState extends State<AlfLaylaWaLaylaWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ReadfeedbackalflwlawlelaWidget(),
+                    builder: (context) => ReadfeedbackalflwlawlelaWidget(user: widget.user),
                   ),
                 );
               },
@@ -300,7 +304,23 @@ class _AlfLaylaWaLaylaWidgetState extends State<AlfLaylaWaLaylaWidget> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                print('IconButton pressed ...');
+                                Favourite fav= Favourite(
+                                    UserId: widget.user.id,
+                                    FavouriteId: '5',
+                                    Type: 'restaurant'
+                                );
+                                print("userID:" + widget.user.id);
+
+                                fav.addfav().then((fa) =>{
+
+                                  if (fa == true){
+                                    print("added to favorite"),
+                                  }
+                                  else {
+                                    print("not added to favorite"),
+                                  }
+
+                                });
                               },
                               icon: Icon(
                                 Icons.favorite,

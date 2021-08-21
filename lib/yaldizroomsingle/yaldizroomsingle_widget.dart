@@ -1,3 +1,5 @@
+import 'package:graduation_project/backend/user.dart';
+
 import '../calculatepricesingleyaldiz/calculatepricesingleyaldiz_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,7 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class YaldizroomsingleWidget extends StatefulWidget {
-  YaldizroomsingleWidget({Key key}) : super(key: key);
+  final User user;
+  YaldizroomsingleWidget({Key key, @required this.user}) : super(key: key);
 
   @override
   _YaldizroomsingleWidgetState createState() => _YaldizroomsingleWidgetState();
@@ -29,7 +32,7 @@ class _YaldizroomsingleWidgetState extends State<YaldizroomsingleWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => YaldizpalaceRoomWidget(),
+                builder: (context) => YaldizpalaceRoomWidget(user: widget.user),
               ),
             );
           },
@@ -53,7 +56,7 @@ class _YaldizroomsingleWidgetState extends State<YaldizroomsingleWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CalculatepricesingleyaldizWidget(),
+                    builder: (context) => CalculatepricesingleyaldizWidget(user: widget.user),
                   ),
                 );
               },
